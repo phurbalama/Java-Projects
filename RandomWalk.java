@@ -6,16 +6,16 @@ public class RandomWalk {
 	int x;
 	int y;
 	int current;
-	int edge;
+	int boundary;
 	
 	public RandomWalk (int max, int edge) {
 		x = 0;y = 0;current = 0;
 		this.maxSteps = max;
-		this.edge = edge;
+		this.boundary = edge;
 	}
 	public RandomWalk(int max, int edge, int startX, int startY){
 		this.maxSteps = max;
-		this.edge = edge;
+		this.boundary = edge;
 		this.x = startX;
 		this.y = startY;
 		current = 0;
@@ -41,23 +41,24 @@ public class RandomWalk {
 		
 		
 	}
+	
+	public boolean inBounds() {
+		int newBoundary = boundary * -1;	
+		 
+		if(x > boundary || y > boundary || x < newBoundary || y < newBoundary)
+		{
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
 	public boolean moreSteps() {
 		if(current < maxSteps) {
 			return true;
 		}
 		else {
 			return false;
-		}
-	}
-	public boolean inBounds() {
-		int newEdge = edge * -1;	
-		 
-		if(x > edge || y > edge || x < newEdge || y < newEdge)
-		{
-			return false;
-		}
-		else {
-			return true;
 		}
 	}
 	public void walk() {
